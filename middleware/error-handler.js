@@ -1,15 +1,15 @@
-import { StatusCodes } from 'http-status-codes';
+// import { StatusCodes } from 'http-status-codes';
 
 const errorHandlerMiddleware = (err, req, res, next) => {
   // console.log(err);
 
   const defaultError = {
-    statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
+    statusCode: err.statusCode || 500,
     msg: err.message || 'Something went wrong, try again later',
   };
 
   if (err.name === 'ValidationError') {
-    defaultError.statusCode = StatusCodes.BAD_REQUEST;
+    defaultError.statusCode = 400;
     // defaultError.msg = err.message;
     // console.log(Object.values(err.errors));
     defaultError.msg = Object.values(err.errors)
@@ -18,7 +18,7 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
 
   if (err.code && err.code === 11000) {
-    defaultError.statusCode = StatusCodes.BAD_REQUEST;
+    defaultError.statusCode = 400;
     defaultError.msg = `${Object.keys(err.keyValue)} field has to be unique`;
   }
 

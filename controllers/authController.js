@@ -1,5 +1,5 @@
 import User from '../models/User.js';
-import { StatusCodes } from 'http-status-codes';
+// import { StatusCodes } from 'http-status-codes';
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
 
 const register = async (req, res, next) => {
@@ -27,7 +27,7 @@ const register = async (req, res, next) => {
 
   const user = await User.create({ name, email, password });
   const token = user.createJWT();
-  res.status(StatusCodes.CREATED).json({
+  res.status(201).json({
     user: {
       name: user.name,
       email: user.email,
@@ -78,7 +78,7 @@ const updateUser = async (req, res) => {
 
   console.log(req.user);
   // res.send('updateUser user');
-  res.status(StatusCodes.OK).json({ user, token, location: user.location });
+  res.status(200).json({ user, token, location: user.location });
 };
 
 export { register, login, updateUser };

@@ -1,10 +1,11 @@
-import { StatusCodes } from 'http-status-codes';
+// import { StatusCodes } from 'http-status-codes';
 import CustomAPIError from './custom-api.js';
 
 class BadRequestError extends CustomAPIError {
   constructor(message) {
     super(message);
-    this.statusCode = StatusCodes.BAD_REQUEST;
+    // this.statusCode = StatusCodes.BAD_REQUEST;
+    this.statusCode = 400;
   }
 }
 
