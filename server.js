@@ -35,10 +35,10 @@ app.use(xss());
 app.use(mongoSanitize());
 
 //dummy route
-// app.get('/', (req, res) => {
-//   // throw new Error('error');
-//   res.send('Welcome');
-// });
+app.get('/', (req, res) => {
+  // throw new Error('error');
+  res.send('Welcome to the test api :: nizar');
+});
 //real route
 app.use('/api/v1/auth', authRouter);
 
